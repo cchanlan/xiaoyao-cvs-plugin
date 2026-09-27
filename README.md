@@ -76,13 +76,13 @@ git clone https://github.com/cchanlan/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-c
 账号数据保存在 `./plugins/xiaoyao-cvs-plugin/data/yaml/<QQ>.yaml`，一个 QQ 一个文件，格式：
 
 ```yaml
-"168927589":
-  stuid: "182879173"
-  stoken: v2_xxx
-  ltoken: xxx
-  mid: xxx
-  uid: "168927589"
-  userId: 2606138772
+"100000001":
+  stuid: "100000002"
+  stoken: v2_xxxxxxxx
+  ltoken: xxxxxxxx
+  mid: xxxxxxxxxxxx_mhy
+  uid: "100000001"
+  userId: 100000000
   region_name: 天空岛
   region: cn_gf01
 ```
