@@ -55,6 +55,12 @@ git clone https://github.com/cchanlan/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-c
 > 默认只允许私聊触发，可在锅巴或 `config/config.yaml` 里改 `mhy.qrcode`：
 > `1` 仅群聊可用 / `2` 仅私聊可用 / `3` 关闭扫码登录。
 
+### 删除账号
+
+- 发送 `#删除stoken` 删除本插件里绑定的账号，可跟 uid 指定
+- 云崽的 `#删除ck` 也会连带删除本插件里对应的米游社凭证
+  （同一个通行证下的所有角色会一起删掉）
+
 ## 配置
 
 配置文件位于 `./plugins/xiaoyao-cvs-plugin/config/config.yaml`，默认值在 `defSet/config/config.yaml`。

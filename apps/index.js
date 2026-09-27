@@ -13,6 +13,8 @@ import {
 	rule as qrRule,
 	qrCodeLogin
 } from './qrLogin.js'
+// #删除ck 同步钩子：以独立 plugin 类注册（靠 priority 抢在 genshin 前面），不进下面的 rule
+export { DelCkSync } from './delCkSync.js'
 
 export {
 	help,
