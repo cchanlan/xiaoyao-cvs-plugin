@@ -5,10 +5,16 @@ import {
 } from "../components/Changelog.js";
 import Common from "../components/Common.js";
 import fs from "fs"
+import { pathToFileURL } from 'node:url'
 const _path = process.cwd();
 
 const helpPath = `${_path}/plugins/xiaoyao-cvs-plugin/resources/help`;
 const path_ = `/plugins/xiaoyao-cvs-plugin/resources/common/layout/`;
+
+/** 带时间戳导入，避免改了配置不生效（Windows 上手拼 file:// 不合法，必须走 pathToFileURL） */
+function importFresh(file) {
+	return import(`${pathToFileURL(file).href}?version=${new Date().getTime()}`)
+}
 
 // puppeteer 挂了时的文字兜底
 const TEXT_HELP = [
@@ -26,9 +32,9 @@ export async function help(e, {
 	let custom = {},
 		help = {};
 	if (fs.existsSync(`${helpPath}/help-cfg.js`)) {
-		help = await import(`file://${helpPath}/help-cfg.js?version=${new Date().getTime()}`);
+		help = await importFresh(`${helpPath}/help-cfg.js`);
 	} else {
-		help = await import(`file://${helpPath}/help-cfg_default.js?version=${new Date().getTime()}`);
+		help = await importFresh(`${helpPath}/help-cfg_default.js`);
 	}
 
 	// 兼容一下旧字段
@@ -41,7 +47,7 @@ export async function help(e, {
 		custom = help;
 	}
 
-	let def = await import(`file://${helpPath}/help-cfg_default.js?version=${new Date().getTime()}`);
+	let def = await importFresh(`${helpPath}/help-cfg_default.js`);
 
 	let helpCfg = lodash.defaults(custom.helpCfg, def.helpCfg);
 	let helpList = custom.helpList || def.helpList;

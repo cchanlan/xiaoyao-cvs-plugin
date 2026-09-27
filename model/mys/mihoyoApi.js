@@ -12,6 +12,7 @@ import {
 } from '../../components/Changelog.js';
 import fetch from "node-fetch"
 import mys from "./mysTool.js";
+import { pathToFileURL } from 'node:url'
 const _path = process.cwd();
 const DEVICE_ID = utils.randomString(32).toUpperCase();
 const DEVICE_NAME = utils.randomString(_.random(1, 10));
@@ -271,24 +272,34 @@ export default class miHoYoApi {
 	}
 
 	async getAgent() {
-		if (isV3) {
-			let cfg = await import(`file://${_path}/lib/config/config.js`);
-			let proxyAddress = cfg.default.bot.proxyAddress
-			if (!proxyAddress) return null
-			if (proxyAddress === 'http://0.0.0.0:0') return null
+		if (!isV3) return null
+		// 读不到宿主配置（非标准框架 / 目录结构不同）时直接不用代理。
+		// 不能让这里抛出去 —— 它在 getData 的调用链上，抛了整个接口请求就废了。
+		let proxyAddress
+		try {
+			// Windows 上手拼 file:// 不是合法 URL，必须走 pathToFileURL
+			let cfg = await import(pathToFileURL(`${_path}/lib/config/config.js`).href)
+			proxyAddress = cfg?.default?.bot?.proxyAddress
+		} catch (err) {
+			return null
+		}
+		if (!proxyAddress) return null
+		if (proxyAddress === 'http://0.0.0.0:0') return null
 
-			if (!this.isOs) return null
+		if (!this.isOs) return null
 
+		try {
 			if (HttpsProxyAgent === '') {
-				HttpsProxyAgent = await import('https-proxy-agent').catch((err) => {
+				let mod = await import('https-proxy-agent').catch((err) => {
 					logger.error(err)
 				})
-
-				HttpsProxyAgent = HttpsProxyAgent ? HttpsProxyAgent.default : undefined
+				HttpsProxyAgent = mod ? mod.default : undefined
 			}
 			if (HttpsProxyAgent) {
 				return new HttpsProxyAgent(proxyAddress)
 			}
+		} catch (err) {
+			logger.error(`[米游社接口] 代理初始化失败，已忽略：${err}`)
 		}
 		return null
 	}

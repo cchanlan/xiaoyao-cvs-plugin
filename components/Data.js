@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 const _path = process.cwd()
 
 let Data = {
@@ -54,8 +55,10 @@ let Data = {
 		}
 		// 检查并创建目录
 		Data.createDir(_path, path, true)
-		if (fs.existsSync(`${_path}/${path}/${file}`)) {
-			let data = await import(`file://${_path}/${path}/${file}`)
+		let full = `${_path}/${path}/${file}`
+		if (fs.existsSync(full)) {
+			// 必须走 pathToFileURL：Windows 下路径是 C:\...，手拼 file:// 不是合法 URL
+			let data = await import(pathToFileURL(full).href)
 			return data || {}
 		}
 		return {}

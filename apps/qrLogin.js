@@ -8,6 +8,7 @@ import User from '../model/user.js';
 import {
 	Cfg,
 } from "../components/index.js";
+import { pathToFileURL } from 'node:url'
 const _path = process.cwd();
 
 export const rule = {
@@ -65,12 +66,14 @@ export async function bindSkCK(e, res) {
 	await saveStoken(e, '1')
 	e.ck = res?.cookie, e.msg = res.cookie, e.raw_message = res.cookie;
 	if (isV3) {
-		let userck = (await import(`file://${_path}/plugins/genshin/model/user.js`)).default
+		// Windows 上手拼 file:// 不是合法 URL，必须走 pathToFileURL
+		let genshinUser = `${_path}/plugins/genshin/model/user.js`
+		let userck = (await import(pathToFileURL(genshinUser).href)).default
 		await (new userck(e)).bing()
 	} else {
 		let {
 			bingCookie
-		} = (await import(`file://${_path}/lib/app/dailyNote.js`))
+		} = (await import(pathToFileURL(`${_path}/lib/app/dailyNote.js`).href))
 		await bingCookie(e)
 	}
 }

@@ -23,6 +23,7 @@
 
 import plugin from '../../../lib/plugins/plugin.js'
 import gsCfg from '../model/gsCfg.js'
+import { pathToFileURL } from 'node:url'
 
 const _path = process.cwd()
 const POLL_INTERVAL_MS = 500
@@ -36,7 +37,9 @@ const XHH_GRACE_MS = 9000
 /** 动态导入 genshin 的模块，取不到就返回 null（没装 genshin 时正常降级） */
 async function loadGenshin(relPath) {
 	try {
-		let mod = await import(`file://${_path}/plugins/genshin/${relPath}`)
+		// 必须走 pathToFileURL：Windows 下路径是 C:\...，手拼 file:// 不是合法 URL
+		let full = `${_path}/plugins/genshin/${relPath}`
+		let mod = await import(pathToFileURL(full).href)
 		return mod?.default || null
 	} catch (err) {
 		return null
