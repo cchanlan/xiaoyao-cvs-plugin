@@ -13,6 +13,11 @@
  * 为什么不是删完直接清：绑定失败（比如当前 uid 没有 ck）时 genshin 不会删任何东西，
  * 那时清 yaml 就是误删。必须等它真删成功。
  *
+ * ⚠️ 为什么要等 XHH_GRACE_MS 才清：xhh-TL 的 delCkHook 也在监听同一个 #删除ck，
+ * 它会从本插件 yaml 里读走被删账号的 stoken 作为「指纹」记进自己的已删名单，
+ * 日后用户重新扫码时靠指纹变化自愈。如果本插件先把 yaml 条目删了，它只会记到空指纹，
+ * 自愈就永久失效（重新扫码了体力还是查不出来）。它最多轮询 8s，所以延后 9s 再清。
+ *
  * 无 genshin 的环境：没人能发出 #删除ck（该指令由 genshin 注册），本钩子永不触发，零副作用。
  */
 
@@ -22,6 +27,11 @@ import gsCfg from '../model/gsCfg.js'
 const _path = process.cwd()
 const POLL_INTERVAL_MS = 500
 const POLL_MAX_MS = 8000
+/**
+ * 清 yaml 前的等待时间。必须大于 xhh-TL delCkHook 的轮询上限（8s），
+ * 保证它先读到 stoken 记下指纹。改这里前先确认对方的 POLL_MAX_MS。
+ */
+const XHH_GRACE_MS = 9000
 
 /** 动态导入 genshin 的模块，取不到就返回 null（没装 genshin 时正常降级） */
 async function loadGenshin(relPath) {
@@ -77,8 +87,8 @@ export class DelCkSync extends plugin {
 	}
 
 	/**
-	 * 轮询 MysUserDB，确认 ltuid 记录已消失后清理 yaml；最长等到 POLL_MAX_MS 超时。
-	 * 相比固定单次延时，能容忍 genshin 落盘慢于预期而不漏清。
+	 * 轮询 MysUserDB，确认 ltuid 记录已消失后，再等 XHH_GRACE_MS 清 yaml；
+	 * 最长等 POLL_MAX_MS 超时。相比固定单次延时，能容忍 genshin 落盘慢于预期而不漏清。
 	 */
 	_pollRemoved(e, qq, ltuid, uids) {
 		const startAt = Date.now()
@@ -88,7 +98,8 @@ export class DelCkSync extends plugin {
 				if (!MysUserDB) return
 				const still = await MysUserDB.find(ltuid)
 				if (!still) {
-					await this._clean(e, qq, ltuid, uids)
+					// 删成功 → 让 xhh-TL 先读走指纹，再清本插件 yaml
+					setTimeout(() => this._clean(e, qq, ltuid, uids), XHH_GRACE_MS)
 					return
 				}
 			} catch (err) {
