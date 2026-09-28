@@ -27,6 +27,15 @@ let Cfg = {
     pct = pct * scale;
     return `style=transform:scale(${pct})`;
   },
+  isDisable(e, rote) {
+    if (Cfg.get(rote, true)) {
+      return false;
+    }
+    if (/^#*图鉴/.test(e.msg || "")) {
+      return false;
+    }
+    return true;
+  },
   /** 合并默认配置和用户配置 */
   merged() {
     return lodash.merge({}, cfg)

@@ -16,7 +16,7 @@ export function supportGuoba() {
       link: 'https://gitee.com/Ctrlcvs/xiaoyao-cvs-plugin',
       isV3: true,
       isV2: true,
-      description: '米游社扫码登录，把 stoken/ck 绑定到云崽',
+      description: '米游社扫码登录与抽卡记录，把 stoken/ck 绑定到云崽',
       icon: 'mdi:qrcode-scan',
       iconColor: '#6bb9dd',
     },
@@ -26,16 +26,34 @@ export function supportGuoba() {
         {
           field: 'mhy.qrcode',
           label: '扫码登录权限',
-          bottomHelpMessage: '控制 #扫码登录 指令在哪些场景可用',
+          bottomHelpMessage: '控制 #扫码登录 指令在哪些场景可用，默认群聊私聊都可用',
           component: 'Select',
           componentProps: {
             options: [
+              { label: '群聊私聊都可用', value: 0 },
               { label: '仅群聊可用', value: 1 },
               { label: '仅私聊可用', value: 2 },
               { label: '关闭扫码登录', value: 3 },
             ],
             placeholder: '请选择扫码登录权限',
           },
+        },
+        {
+          field: 'gclogEx',
+          label: '抽卡记录冷却',
+          bottomHelpMessage: '更新抽卡记录的冷却时间，单位分钟，避免重复请求',
+          component: 'InputNumber',
+          componentProps: {
+            min: 1,
+            max: 120,
+            placeholder: '默认 5',
+          },
+        },
+        {
+          field: 'ck.sk',
+          label: '发 ck 自动换 stoken',
+          bottomHelpMessage: '私聊发送含 login_ticket 的 ck 时，自动换出 stoken 保存',
+          component: 'Switch',
         },
       ],
       // 获取配置数据方法（用于前端填充显示数据）

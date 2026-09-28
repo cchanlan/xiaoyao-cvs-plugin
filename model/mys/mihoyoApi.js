@@ -11,8 +11,8 @@ import {
 	isV3
 } from '../../components/Changelog.js';
 import fetch from "node-fetch"
-import mys from "./mysTool.js";
-import { pathToFileURL } from 'node:url'
+import mys from "./mysTool.js"
+import crypto from "crypto";
 const _path = process.cwd();
 const DEVICE_ID = utils.randomString(32).toUpperCase();
 const DEVICE_NAME = utils.randomString(_.random(1, 10));
@@ -20,8 +20,9 @@ const yamlDataUrl = `${_path}/plugins/xiaoyao-cvs-plugin/data/yaml`;
 let HttpsProxyAgent = ''
 
 /**
- * 米游社接口请求
- * 只保留扫码登录链路用到的接口：账号角色查询、stoken 换 ck、二维码创建/轮询
+ * 米游社接口
+ * 只保留扫码登录 / 抽卡记录链路用到的端点：
+ * 账号角色查询、stoken 换 ck、stoken 读取、authKey 生成、二维码创建与轮询
  */
 export default class miHoYoApi {
 	constructor(e) {
@@ -41,10 +42,11 @@ export default class miHoYoApi {
 			if (this.isOs) {
 				this.apiMap = {
 					apiWeb: mys.os_web_api,
-					saltweb: mys.saltWeb,
+					saltweb: mys.saltWeb, //os websalt待定中
 					saltSign: mys.salt
 				}
 			}
+			//初始化配置文件
 			let data = this.getStoken(this.e.user_id);
 			if (data) {
 				this.cookies = `stuid=${data.stuid};stoken=${data.stoken};ltoken=${data.ltoken};`;
@@ -94,10 +96,11 @@ export default class miHoYoApi {
 			param.method = 'get'
 		}
 		//用于处理特殊情况
-		if (data.method) {
-			param.method = data.method
+		if(data.method){
+			param.method=data.method
 		}
 		let response = {}
+		let start = Date.now()
 		try {
 			response = await fetch(url, param)
 		} catch (error) {
@@ -110,6 +113,7 @@ export default class miHoYoApi {
 		}
 
 		let res = await response.text();
+		// Bot.logger.mark(`[接口][${type}][${this.e.uid}] ${Date.now() - start}ms\n${res}`)
 		if (res.startsWith('(')) {
 			res = JSON.parse((res).replace(/\(|\)/g, ""))
 		} else {
@@ -125,13 +129,25 @@ export default class miHoYoApi {
 		res.api = type
 		return res
 	}
-
 	getUrl(type, board, data) {
 		let urlMap = {
+			userGameInfo: { //通用查询
+				url: `${this.apiMap.apiWeb}/binding/api/getUserGameRolesByCookie`,
+				query: `game_biz=${this.isOs ? board?.osbiz : board?.biz}`,
+				types: 'sign'
+			},
+			bbsGetCookie: {
+				url: `${this.apiMap.apiWeb}/auth/api/getCookieAccountInfoBySToken`,
+				query: `game_biz=hk4e_cn&${data.cookies}`,
+				types: ''
+			},
+			bbsStoken: {
+				url: `${this.apiMap.apiWeb}/auth/api/getMultiTokenByLoginTicket`,
+				query: `login_ticket=${data.loginTicket}&token_types=3&uid=${data.loginUid}`,
+				types: 'stoken'
+			},
 			authKey: {
-				///account/auth/api/genAuthKey
 				url: `${this.apiMap.apiWeb}/binding/api/genAuthKey`,
-				// url:`https://gameapi-account.mihoyo.com/binding/api/genAuthKey`,
 				body: {
 					'auth_appid':data.auth_appid ?? 'webview_gacha',//'apicdkey',// 'webview_gacha',
 					'game_biz': this.isOs ? 'hk4e_global' : 'hk4e_cn',
@@ -140,19 +156,9 @@ export default class miHoYoApi {
 				},
 				types: 'authKey'
 			},
-			userGameInfo: { //通用查询
-				url: `${this.apiMap.apiWeb}/binding/api/getUserGameRolesByCookie`,
-				query: `game_biz=${this.isOs ? board?.osbiz : board?.biz}`,
-				types: 'sign'
-			},
 			getLtoken: {
 				url: `${mys.pass_api}/account/auth/api/getLTokenBySToken`,
-				query: `${data?.cookies?.replace(/;/g, '&')}`,
-			},
-			bbsGetCookie: {
-				url: `${this.apiMap.apiWeb}/auth/api/getCookieAccountInfoBySToken`,
-				query: `game_biz=hk4e_cn&${data.cookies}`,
-				types: ''
+				query: `${data?.cookies?.replace(/;/g,'&')}`,
 			},
 			qrCodeLogin: {
 				url: `${mys.pass_api}/account/ma-cn-passport/app/createQRLogin`,
@@ -185,9 +191,43 @@ export default class miHoYoApi {
 		}
 	}
 
+	// 请求 headers
 	getHeaders(board, type = "bbs", sign, body = {}, query = '') {
 		let header = {};
 		switch (type) {
+			case "sign":
+				header = {
+					'accept-language': 'zh-CN,zh;q=0.9,ja-JP;q=0.8,ja;q=0.7,en-US;q=0.6,en;q=0.5',
+					'x-rpc-device_id': DEVICE_ID,
+					'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${mys.APP_VERSION}`,
+					Referer: board?.getReferer?.(),
+					Host: 'api-takumi.mihoyo.com',
+					'x-rpc-channel': 'appstore',
+					'x-rpc-app_version': mys.APP_VERSION,
+					'x-requested-with': 'com.mihoyo.hyperion',
+					'x-rpc-client_type': '5',
+					'Content-Type': 'application/json;charset=UTF-8',
+					DS: this.getDs(),
+					'Cookie': this.cookie
+				}
+				if(board?.key === "genshin"){
+					header["x-rpc-signgame"]="hk4e"
+				}
+				if (this.isOs) {
+					let os_Header = {
+						app_version: '2.9.0',
+						User_Agent: `Mozilla/5.0 (Linux; Android 9.0; SAMSUNG SM-F900U Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.73 Mobile Safari/537.36 miHoYoBBSOversea/2.9.0`,
+						client_type: '2',
+						'x-rpc-app_version': '2.9.0',
+						Origin: 'https://webstatic-sea.hoyolab.com',
+						X_Requested_With: 'com.mihoyo.hoyolab',
+						Referer: 'https://webstatic-sea.hoyolab.com',
+						DS: this.getDs(),
+						'Cookie': this.cookie
+					}
+					header = os_Header
+				}
+				break;
 			case "authKey":
 				header = {
 					'x-rpc-app_version': mys.APP_VERSION,
@@ -219,36 +259,17 @@ export default class miHoYoApi {
 					header = Object.assign({}, header, os_Header)
 				}
 				break;
-			case "sign":
+			case "stoken":
 				header = {
-					'accept-language': 'zh-CN,zh;q=0.9,ja-JP;q=0.8,ja;q=0.7,en-US;q=0.6,en;q=0.5',
-					'x-rpc-device_id': DEVICE_ID,
-					'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${mys.APP_VERSION}`,
-					Referer: board?.getReferer(),
-					Host: 'api-takumi.mihoyo.com',
-					'x-rpc-channel': 'appstore',
-					'x-rpc-app_version': mys.APP_VERSION,
-					'x-requested-with': 'com.mihoyo.hyperion',
-					'x-rpc-client_type': '5',
-					'Content-Type': 'application/json;charset=UTF-8',
-					DS: this.getDs(),
-					'Cookie': this.cookie
-				}
-				if (board?.key === "genshin") {
-					header["x-rpc-signgame"] = "hk4e"
-				}
-				if (this.isOs) {
-					header = {
-						app_version: '2.9.0',
-						User_Agent: `Mozilla/5.0 (Linux; Android 9.0; SAMSUNG SM-F900U Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.73 Mobile Safari/537.36 miHoYoBBSOversea/2.9.0`,
-						client_type: '2',
-						'x-rpc-app_version': '2.9.0',
-						Origin: 'https://webstatic-sea.hoyolab.com',
-						X_Requested_With: 'com.mihoyo.hoyolab',
-						Referer: 'https://webstatic-sea.hoyolab.com',
-						DS: this.getDs(),
-						'Cookie': this.cookie
-					}
+					"x-rpc-device_id": "zxcvbnmasadfghjk123456",
+					"Content-Type": "application/json;charset=UTF-8",
+					"x-rpc-client_type": "",
+					"x-rpc-app_version": "",
+					"DS": "",
+					"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/%s",
+					"Referer": "cors",
+					"Accept-Encoding": "gzip, deflate, br",
+					"x-rpc-channel": "appstore",
 				}
 				break;
 			case "pass":
@@ -298,7 +319,7 @@ export default class miHoYoApi {
 		}
 	}
 
-	//社区相关接口的 ds 签名
+	//社区签到ds
 	getDs2(q = "", b, salt) {
 		let i = Math.floor(Date.now() / 1000)
 		let r = _.random(100001, 200000)
@@ -314,35 +335,33 @@ export default class miHoYoApi {
 		return `${timestamp},${randomStr},${sign}`
 	}
 
+	/**
+	 * 取代理。读不到宿主配置（不同框架路径可能不同）时返回 null，不能抛出去 ——
+	 * 它在 getData 的调用链上，抛异常会把整个接口请求废掉（扫码登录会直接挂）
+	 */
 	async getAgent() {
-		if (!isV3) return null
-		// 读不到宿主配置（非标准框架 / 目录结构不同）时直接不用代理。
-		// 不能让这里抛出去 —— 它在 getData 的调用链上，抛了整个接口请求就废了。
-		let proxyAddress
 		try {
-			// Windows 上手拼 file:// 不是合法 URL，必须走 pathToFileURL
-			let cfg = await import(pathToFileURL(`${_path}/lib/config/config.js`).href)
-			proxyAddress = cfg?.default?.bot?.proxyAddress
-		} catch (err) {
-			return null
-		}
-		if (!proxyAddress) return null
-		if (proxyAddress === 'http://0.0.0.0:0') return null
+			if (isV3) {
+				let cfg = await import(`file://${_path}/lib/config/config.js`);
+				let proxyAddress = cfg.default.bot.proxyAddress
+				if (!proxyAddress) return null
+				if (proxyAddress === 'http://0.0.0.0:0') return null
 
-		if (!this.isOs) return null
+				if (!this.isOs) return null
 
-		try {
-			if (HttpsProxyAgent === '') {
-				let mod = await import('https-proxy-agent').catch((err) => {
-					logger.error(err)
-				})
-				HttpsProxyAgent = mod ? mod.default : undefined
-			}
-			if (HttpsProxyAgent) {
-				return new HttpsProxyAgent(proxyAddress)
+				if (HttpsProxyAgent === '') {
+					HttpsProxyAgent = await import('https-proxy-agent').catch((err) => {
+						logger.error(err)
+					})
+
+					HttpsProxyAgent = HttpsProxyAgent ? HttpsProxyAgent.default : undefined
+				}
+				if (HttpsProxyAgent) {
+					return new HttpsProxyAgent(proxyAddress)
+				}
 			}
 		} catch (err) {
-			logger.error(`[米游社接口] 代理初始化失败，已忽略：${err}`)
+			logger.debug(`[米游社接口] 读取代理配置失败：${err}`)
 		}
 		return null
 	}

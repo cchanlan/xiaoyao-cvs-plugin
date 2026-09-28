@@ -8,6 +8,9 @@ import {
 	delSign,
 	userInfo,
 	mytoken,
+	updCookie,
+	bindStoken,
+	bindLogin_ticket,
 	gclog
 } from "./user.js"
 import {
@@ -23,6 +26,9 @@ export {
 	userInfo,
 	mytoken,
 	delSign,
+	updCookie,
+	bindStoken,
+	bindLogin_ticket,
 	qrCodeLogin,
 	gclog,
 };

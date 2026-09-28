@@ -6,7 +6,10 @@ import {
 const plugin = "xiaoyao-cvs-plugin"
 /**
  * 配置文件与账号数据
- * 只处理 stoken（data/yaml）的读写
+ *
+ * 两类数据：
+ * - `plugins/xiaoyao-cvs-plugin/data/yaml/<QQ>.yaml` —— 本插件自己的 stoken（扫码登录写入）
+ * - `data/MysCookie/<QQ>.yaml` —— **genshin 插件的 ck 绑定库**，只读（抽卡记录 / 扫码登录都要用它取 uid）
  */
 const _path = process.cwd();
 class GsCfg {
@@ -30,6 +33,52 @@ class GsCfg {
 			fs.copyFileSync(`./plugins/${plugin}/defSet/${app}/${name}.yaml`, set)
 		}
 	}
+
+	/** 读 genshin 侧的 ck 绑定库（只读，不写） */
+	getBingCookie(userId) {
+		let file = `./data/MysCookie/${userId}.yaml`
+		try {
+			let ck = fs.readFileSync(file, 'utf-8')
+			ck = YAML.parse(ck)
+			for (let item in ck) {
+				let login_ticket;
+				if (!ck[item].isMain) {
+					continue;
+				}
+				login_ticket = ck[item]?.login_ticket
+				ck = ck[item].ck
+				return {
+					ck,
+					item,
+					login_ticket
+				};
+			}
+		} catch (error) {
+			return {}
+		}
+	}
+
+	/**
+	 * 取某个游戏 uid 对应的通行证 id（ltuid）
+	 *
+	 * genshin 绑定库里一个通行证会挂多个角色，本插件 yaml 按角色 uid 存。
+	 * 凭证失效要按**通行证**删（同通行证的其它角色也一起失效），所以先在这里做 uid → ltuid 的换算。
+	 * 传 uid 取不到时回落到 isMain 那条；都取不到返回空串。
+	 */
+	getBingLtuid(userId, uid = '') {
+		let file = `./data/MysCookie/${userId}.yaml`
+		try {
+			let ck = YAML.parse(fs.readFileSync(file, 'utf-8')) || {}
+			if (uid && ck[String(uid)]?.ltuid) return String(ck[String(uid)].ltuid)
+			for (let k in ck) {
+				if (ck[k]?.isMain && ck[k]?.ltuid) return String(ck[k].ltuid)
+			}
+		} catch (error) {
+			// 没装 genshin / 没绑定，返回空串由调用方降级
+		}
+		return ''
+	}
+
 	/** 读取单个用户绑定的 stoken */
 	async getUserStoken(userId) {
 		try {

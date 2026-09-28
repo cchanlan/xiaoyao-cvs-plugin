@@ -27,7 +27,8 @@ export async function redisGet(userId, type = 'bbs') {
 }
 
 export async function redisSet(userId = "all", type = 'bbs', data, time = 0) {
-	var dayTime = moment(Date.now()).add('days', 1).format('YYYY-MM-DD 00:00:00')
+	// 参数顺序必须是 (数字, 单位)：写成 add('days', 1) 在新版 moment 上会报 deprecation
+	var dayTime = moment(Date.now()).add(1, 'days').format('YYYY-MM-DD 00:00:00')
 	var new_date = (new Date(dayTime).getTime() - new Date().getTime()) / 1000 //获取隔天凌晨的时间差
 	if (time !== 0) {
 		new_date = time

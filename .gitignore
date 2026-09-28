@@ -1,3 +1,9 @@
 node_modules/
 data/*
 help-cfg.js
+resources/common/tpl/
+resources/common/tpl.css
+resources/common/tpl.less
+resources/common/item/
+resources/help/index.less
+resources/help/version-info.less

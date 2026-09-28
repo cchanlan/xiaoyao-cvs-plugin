@@ -34,6 +34,7 @@ export const render_path = async function (path, params, cfg,path_) {
   let base64 = await render(paths[0], paths[1], {
     ...params,
     _layout_path,
+	_tpl_path: process.cwd() + '/plugins/xiaoyao-cvs-plugin/resources/common/tpl/',
     defaultLayout: _layout_path + "default.html",
     elemLayout: _layout_path + "elem.html",
     sys: {
@@ -52,5 +53,6 @@ export const render_path = async function (path, params, cfg,path_) {
 
 export default {
   render,render_path,
-  cfg: Cfg.get
+  cfg: Cfg.get,
+  isDisable: Cfg.isDisable
 };

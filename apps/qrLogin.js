@@ -19,10 +19,10 @@ export const rule = {
 }
 
 /**
- * 扫码登录：出二维码 → 轮询扫码状态 → 拿到 stoken/ck → 落盘
+ * 扫码登录：出二维码 → 轮询扫码状态 → 拿到 stoken/ck → 落盘 + 交给 genshin 绑定
  */
 export async function qrCodeLogin(e, { render }) {
-	let power = Cfg.get("mhy.qrcode")
+	let power = Cfg.get("mhy.qrcode", 0)
 	if (power === 3) {
 		return false;
 	} else {
