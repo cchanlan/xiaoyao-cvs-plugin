@@ -1,4 +1,7 @@
 import gsCfg from '../model/gsCfg.js';
+import utils from '../model/mys/utils.js';
+import { isV3 } from '../components/Changelog.js';
+import User from '../model/user.js';
 
 export const rule = {
 	userInfo: {
@@ -12,6 +15,10 @@ export const rule = {
 	delSign: {
 		reg: "^#*删除(我的)*(stoken|sk)(\\s*\\d{6,})?$",
 		describe: "删除已绑定的账号"
+	},
+	gclog: {
+		reg: "^#*(更新|获取|导出)抽卡记录$",
+		describe: "更新抽卡记录"
 	}
 }
 const _path = process.cwd();
@@ -90,4 +97,72 @@ export async function delSign(e) {
 	logger.mark(`[删除stoken] qq:${e.user_id} 删除 ${delList.join(",")}`);
 	e.reply(`已删除账号：${delList.join("、")}`);
 	return true;
+}
+
+// ===== 从精简前版本搬回来的抽卡记录（原神） =====
+let configData = gsCfg.getfileYaml(`${_path}/plugins/xiaoyao-cvs-plugin/config/`, 'config') || {};
+
+export async function gclog(e) {
+	let user = new User(e);
+	// 精简版删掉了 user.cookie()（旧版用它刷新/补全 ck）；
+	// 现在 miHoYoApi 的构造函数会自己从已绑定的 stoken 组装 cookies，这一步不再需要
+	let redis_Data = await redis.get(`xiaoyao:gclog:${e.user_id}`);
+	if (redis_Data) {
+		let time = redis_Data * 1 - Math.floor(Date.now() / 1000);
+		e.reply(`请求过快,请${time}秒后重试...`);
+		return true;
+	}
+	let isGet = /导出|获取/.test(e.msg)
+	if (!e.isPrivate && isGet) {
+		e.reply("请私聊发送")
+		return true;
+	}
+	let authkey = await getAuthKey(e, user)
+	if (!authkey) {
+		return true;
+	}
+	let url = `https://public-operation-hk4e.mihoyo.com/gacha_info/api/getGachaLog?authkey_ver=1&sign_type=2&auth_appid=webview_gacha&init_type=301&gacha_id=fecafa7b6560db5f3182222395d88aaa6aaac1bc&timestamp=${Math.floor(Date.now() / 1000)}&lang=zh-cn&device_type=mobile&plat_type=ios&region=${e.region}&authkey=${encodeURIComponent(authkey)}&game_biz=hk4e_cn&gacha_type=301&page=1&size=5&end_id=0`
+	e.msg = url
+	// e.reply(e.msg)
+	let sendMsg = [];
+	e.reply("抽卡记录获取中请稍等...")
+	e._reply = e.reply;
+	e.reply = (msg) => {
+		sendMsg.push(msg)
+	}
+	if (isGet) {
+		sendMsg = [...sendMsg, ...[1, `uid:${e.uid}`, e.msg]]
+	} else {
+		if (isV3) {
+			let gclog = (await import(`file://${_path}/plugins/genshin/model/gachaLog.js`)).default
+			await (new gclog(e)).logUrl()
+		} else {
+			let {
+				bing
+			} = (await import(`file://${_path}/lib/app/gachaLog.js`))
+			e.isPrivate = true;
+			await bing(e)
+		}
+	}
+	await utils.replyMake(e, sendMsg, 1)
+	let time = (configData.gclogEx || 5) * 60
+	redis.set(`xiaoyao:gclog:${e.user_id}`, Math.floor(Date.now() / 1000) + time, { //数据写入缓存避免重复请求
+		EX: time
+	});
+	return true;
+}
+
+async function getAuthKey(e, user,data={
+	auth_appid:'webview_gacha'
+}) {
+	if (!e.uid) {
+		e.uid = e?.runtime?.user?._regUid
+	}
+	e.region = utils.getServer(e.uid)
+	let authkeyrow = await user.getData("authKey", data);
+	if (!authkeyrow?.data) {
+		e.reply(`uid:${e.uid},authkey获取失败：` + (authkeyrow.message.includes("登录失效") ? "请重新绑定stoken" : authkeyrow.message))
+		return false;
+	}
+	return authkeyrow.data["authkey"];
 }

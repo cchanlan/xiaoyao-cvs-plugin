@@ -83,8 +83,39 @@ export function recallMsg(e, r, times) {
 	}, 1000 * times)
 }
 
+export async function replyMake(e, _msg, lenght) {
+	const bot = e.bot || Bot
+	let nickname = bot.nickname;
+	if (e.isGroup && bot.getGroupMemberInfo) try {
+		const info = await bot.getGroupMemberInfo(e.group_id, bot.uin)
+		nickname = info.card || info.nickname
+	} catch {}
+	let msgList = [];
+	for (let [index, item] of Object.entries(_msg)) {
+		if (index < lenght) {
+			continue;
+		}
+		msgList.push({
+			message: item,
+			nickname: nickname,
+			user_id: bot.uin
+		})
+	}
+	if (e.isGroup) {
+		msgList = await e.group.makeForwardMsg(msgList)
+	} else {
+		msgList = await e.friend.makeForwardMsg(msgList)
+	}
+	if (e._reply) {
+		e._reply(msgList);
+	} else {
+		e.reply(msgList);
+	}
+}
+
 export default {
 	sleepAsync,
+	replyMake,
 	redisDel,
 	getServer,
 	randomString,

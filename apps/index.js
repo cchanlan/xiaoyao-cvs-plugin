@@ -7,7 +7,8 @@ import {
 	rule as userRule,
 	delSign,
 	userInfo,
-	mytoken
+	mytoken,
+	gclog
 } from "./user.js"
 import {
 	rule as qrRule,
@@ -23,6 +24,7 @@ export {
 	mytoken,
 	delSign,
 	qrCodeLogin,
+	gclog,
 };
 
 let rule = {

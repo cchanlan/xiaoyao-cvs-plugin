@@ -128,6 +128,18 @@ export default class miHoYoApi {
 
 	getUrl(type, board, data) {
 		let urlMap = {
+			authKey: {
+				///account/auth/api/genAuthKey
+				url: `${this.apiMap.apiWeb}/binding/api/genAuthKey`,
+				// url:`https://gameapi-account.mihoyo.com/binding/api/genAuthKey`,
+				body: {
+					'auth_appid':data.auth_appid ?? 'webview_gacha',//'apicdkey',// 'webview_gacha',
+					'game_biz': this.isOs ? 'hk4e_global' : 'hk4e_cn',
+					'game_uid': this.e.uid * 1,
+					'region': this.e.region,
+				},
+				types: 'authKey'
+			},
 			userGameInfo: { //通用查询
 				url: `${this.apiMap.apiWeb}/binding/api/getUserGameRolesByCookie`,
 				query: `game_biz=${this.isOs ? board?.osbiz : board?.biz}`,
@@ -176,6 +188,37 @@ export default class miHoYoApi {
 	getHeaders(board, type = "bbs", sign, body = {}, query = '') {
 		let header = {};
 		switch (type) {
+			case "authKey":
+				header = {
+					'x-rpc-app_version': mys.APP_VERSION,
+					'User-Agent': 'okhttp/4.8.0',
+					'x-rpc-client_type': '5',
+					Referer: 'https://app.mihoyo.com',
+					Origin: 'https://webstatic.mihoyo.com',
+					Cookie: this.cookies,
+					DS: this.getDs(this.isOs ? mys.osSalt : mys.saltWeb),
+					'x-rpc-sys_version': '12',
+					'x-rpc-channel': 'mihoyo',
+					'x-rpc-device_id': DEVICE_ID,
+					'x-rpc-device_name': DEVICE_NAME,
+					'x-rpc-device_model': 'Mi 10',
+					Host: 'api-takumi.mihoyo.com'
+				}
+				if (this.isOs) {
+					let os_Header = {
+						'x-rpc-app_version': '2.18.1',
+						app_version: '2.18.1',
+						client_type: '2',
+						'x-rpc-client_type': '2',
+						Origin: 'https://app.hoyolab.com',
+						X_Requested_With: 'com.mihoyo.hoyolab',
+						Referer: 'https://app.hoyolab.com',
+						Host: 'api-os-takumi.mihoyo.com',
+						'x-rpc-channel': 'hoyolab'
+					}
+					header = Object.assign({}, header, os_Header)
+				}
+				break;
 			case "sign":
 				header = {
 					'accept-language': 'zh-CN,zh;q=0.9,ja-JP;q=0.8,ja;q=0.7,en-US;q=0.6,en;q=0.5',
