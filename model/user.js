@@ -10,6 +10,7 @@ import {
 import {
     Data
 } from "../components/index.js";
+import { pathToFileURL } from 'node:url'
 
 const _path = process.cwd();
 const plugin = "xiaoyao-cvs-plugin";
@@ -60,8 +61,11 @@ export default class user {
         if (isV3) {
             skuid = await gsCfg.getBingCookie(e.user_id);
             cookie = skuid?.ck;
-            uid = skuid?.item;
-            uid = this.pickUidWithStoken(e.user_id, skuid?.item, uid)
+            // #uid 切换只写 genshin 的 SQLite，data/MysCookie/<QQ>.yaml 是启动时回灌的旧快照，
+            // 只读它会把 uid 钉死在最早的 isMain 上 —— 用户切了号，更新的还是老号
+            let liveUid = await this.getLiveUid(e)
+            uid = liveUid || skuid?.item;
+            uid = this.pickUidWithStoken(e.user_id, gsCfg.getBingLtuid(e.user_id, uid), uid)
             if (!uid && e?.user?.getUid) {
                 uid = e?.user?.getUid('gs')
                 cookie = e?.user?.mysUser?.ck
@@ -76,6 +80,22 @@ export default class user {
             cookie,
             uid,
             skuid
+        }
+    }
+
+    /**
+     * 取 genshin 当前生效的原神 uid（读它的 SQLite，实时值）
+     *
+     * `#uid` 切换只写数据库，不碰本插件读的 `data/MysCookie/<QQ>.yaml`（启动时才回灌一次），
+     * 所以那个文件里的 isMain 会一直是老号。取不到时返回空串，由调用方回落到旧逻辑。
+     */
+    async getLiveUid(e) {
+        try {
+            let { default: NoteUser } = await import(pathToFileURL(`${_path}/plugins/genshin/model/mys/NoteUser.js`).href)
+            let noteUser = await NoteUser.create(e)
+            return String(noteUser?.getUid?.('gs') || '')
+        } catch (err) {
+            return ''
         }
     }
 
