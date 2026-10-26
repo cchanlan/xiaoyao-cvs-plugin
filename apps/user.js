@@ -335,7 +335,12 @@ export async function gclog(e) {
 			await bing(e)
 		}
 	}
-	await utils.replyMake(e, sendMsg, 1)
+	// 失败时 sendMsg 只有一条提示，replyMake 从 index 1 开始取，转发出来就是 0 节点空消息
+	if (sendMsg.length <= 1) {
+		if (sendMsg.length) await e._reply(sendMsg[0])
+	} else {
+		await utils.replyMake(e, sendMsg, 1)
+	}
 	let time = (configData.gclogEx || 5) * 60
 	redis.set(`xiaoyao:gclog:${e.user_id}`, Math.floor(Date.now() / 1000) + time, { //数据写入缓存避免重复请求
 		EX: time
