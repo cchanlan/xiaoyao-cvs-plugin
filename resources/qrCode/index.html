@@ -1,30 +1,41 @@
 {{extend defaultLayout}}
 {{block 'css'}}
 <style>
+    /* 二维码合成卡片：以 furina-qr-code.png 为底图，二维码叠加到指定坐标 */
     .container {
-        width: 600px !important;
-        font-size: 1.125rem;
-        /* 全局字体大小 */
-        background-color: rgb(243, 242, 241);
-        padding: 20px 0 10px 0 !important;
+        width: 936px !important;
+        padding: 0 !important;
+        margin: 0;
+        background: none;
     }
-    .topTitle table{
-        margin: 0 auto;
+    .qr-card {
+        position: relative;
+        width: 936px;
+        height: 1024px;
+        background-image: url('{{_res_path}}/qrCode/furina-qr-code.png');
+        background-size: 936px 1024px;
+        background-repeat: no-repeat;
     }
-    .txt{
-        text-align: center;
-        color: red;
-        margin-top: 10px;
-        padding: 0 10px;
+    /* 二维码外接矩形左上角位于背景图 (100, 185)，尺寸 500x500 */
+    .qr-box {
+        position: absolute;
+        left: 100px;
+        top: 185px;
+        width: 500px;
+        height: 500px;
+    }
+    .qr-box table {
+        border-collapse: collapse;
+    }
+    /* 免责声明已烧录在背景图中，隐藏布局自带的版权条避免底部多出一条 */
+    .copyright {
+        display: none !important;
     }
 </style>
 {{/block}}
 {{block 'main'}}
-<div class="topTitle" style="margin: 0 auth;">
-   
-</div>
-<div class="txt">
-    免责声明：请勿随意扫码，谁触发谁扫码，bot仅提供功能。<br/>如果恶意抢码导致账号出问题的请自行承担后果
+<div class="qr-card">
+    <div class="qr-box" id="qrbox"></div>
 </div>
 <script src="{{_res_path}}/qrCode/js/jquery-1.10.2.min.js"></script>
 <script src="{{_res_path}}/qrCode/js/jquery.qrcode.min.js"></script>
@@ -36,6 +47,6 @@ var config = {
     correctLevel:2,//取值为0|1|2|3 表示二维码的纠错级别0:L/1:M/2:Q/3:H ,默认0 可选参数
     render:"table"//取值:table/canvas , 默认table 可选参数
 };
-$(".topTitle").qrcode(config);
+$("#qrbox").qrcode(config);
 </script>
 {{/block}}

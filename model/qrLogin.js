@@ -15,7 +15,8 @@ export default class mysQrLogin {
 	async qrCodeLogin() {
 		let RedisData = await utils.redisGet(this.e.user_id, "GetQrCode")
 		if (RedisData) {
-			this.e.reply([segment.at(this.e.user_id), `前置二维码未扫描，请勿重复触发指令`])
+			// 私聊发送 at 会报 retcode 1400，仅在群聊场景下 at 发起人
+			this.e.reply(this.e.isGroup ? [segment.at(this.e.user_id), `前置二维码未扫描，请勿重复触发指令`] : [`前置二维码未扫描，请勿重复触发指令`])
 			return false;
 		}
 		this.device = await utils.randomString(16)

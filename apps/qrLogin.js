@@ -37,7 +37,8 @@ export async function qrCodeLogin(e, { render }) {
 	let res = await Mys.qrCodeLogin()
 	if (!res?.data) return false;
 	e._reply = e.reply
-	let sendMsg = [segment.at(e.user_id), '\n请扫码以完成绑定\n']
+	// 私聊发送 at 会报 retcode 1400，仅在群聊场景下 at 发起人
+	let sendMsg = e.isGroup ? [segment.at(e.user_id), '\n请扫码以完成绑定\n'] : ['请扫码以完成绑定\n']
 	e.reply = (msg) => {
 		sendMsg.push(msg)
 	}
