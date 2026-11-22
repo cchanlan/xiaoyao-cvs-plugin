@@ -106,6 +106,10 @@ git clone https://github.com/cchanlan/xiaoyao-cvs-plugin.git ./plugins/xiaoyao-c
 3. 在手机上确认登录
 4. 绑定成功后机器人会回复账号列表
 
+私聊回复不带 `@`；群聊会 `@` 发起人。二维码采用芙宁娜主题背景。
+
+[查看扫码登录界面示例](docs/qr-composite.md)（演示图不能用于登录）。
+
 > 默认群聊私聊都可用，可在锅巴或 `config/config.yaml` 里改 `mhy.qrcode`：
 > `0` 都可用 / `1` 仅群聊可用 / `2` 仅私聊可用 / `3` 关闭扫码登录。
 
