@@ -1,0 +1,1622 @@
+[
+  {
+    "id": "mondstadt-venti",
+    "regionId": "mondstadt",
+    "nation": "蒙德",
+    "characterName": "温迪",
+    "officialName": "温迪",
+    "color": "#287f77",
+    "files": {
+      "background": "assets/mondstadt-scene-01.jpg",
+      "character": "assets/mondstadt-venti-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 673.215,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 145,
+    "headAnchor": [
+      867.215,
+      366
+    ],
+    "backgroundPool": [
+      {
+        "name": "果酒湖",
+        "file": "assets/mondstadt-scene-01.jpg"
+      },
+      {
+        "name": "晨曦酒庄",
+        "file": "assets/mondstadt-scene-02.jpg"
+      },
+      {
+        "name": "清泉镇",
+        "file": "assets/mondstadt-scene-03.jpg"
+      },
+      {
+        "name": "誓言岬",
+        "file": "assets/mondstadt-scene-04.jpg"
+      },
+      {
+        "name": "千风神殿",
+        "file": "assets/mondstadt-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "mondstadt-jean",
+    "regionId": "mondstadt",
+    "nation": "蒙德",
+    "characterName": "琴",
+    "officialName": "琴",
+    "color": "#287f77",
+    "files": {
+      "background": "assets/mondstadt-scene-02.jpg",
+      "character": "assets/mondstadt-jean-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 542.79,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 70,
+    "headAnchor": [
+      791.79,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "果酒湖",
+        "file": "assets/mondstadt-scene-01.jpg"
+      },
+      {
+        "name": "晨曦酒庄",
+        "file": "assets/mondstadt-scene-02.jpg"
+      },
+      {
+        "name": "清泉镇",
+        "file": "assets/mondstadt-scene-03.jpg"
+      },
+      {
+        "name": "誓言岬",
+        "file": "assets/mondstadt-scene-04.jpg"
+      },
+      {
+        "name": "千风神殿",
+        "file": "assets/mondstadt-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "mondstadt-diluc",
+    "regionId": "mondstadt",
+    "nation": "蒙德",
+    "characterName": "迪卢克",
+    "officialName": "迪卢克",
+    "color": "#287f77",
+    "files": {
+      "background": "assets/mondstadt-scene-03.jpg",
+      "character": "assets/mondstadt-diluc-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 629.71,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 93,
+    "headAnchor": [
+      814.71,
+      366
+    ],
+    "backgroundPool": [
+      {
+        "name": "果酒湖",
+        "file": "assets/mondstadt-scene-01.jpg"
+      },
+      {
+        "name": "晨曦酒庄",
+        "file": "assets/mondstadt-scene-02.jpg"
+      },
+      {
+        "name": "清泉镇",
+        "file": "assets/mondstadt-scene-03.jpg"
+      },
+      {
+        "name": "誓言岬",
+        "file": "assets/mondstadt-scene-04.jpg"
+      },
+      {
+        "name": "千风神殿",
+        "file": "assets/mondstadt-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "mondstadt-klee",
+    "regionId": "mondstadt",
+    "nation": "蒙德",
+    "characterName": "可莉",
+    "officialName": "可莉",
+    "color": "#287f77",
+    "files": {
+      "background": "assets/mondstadt-scene-04.jpg",
+      "character": "assets/mondstadt-klee-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 777,
+    "characterLeft": 742.679,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 162,
+    "headAnchor": [
+      883.679,
+      356
+    ],
+    "backgroundPool": [
+      {
+        "name": "果酒湖",
+        "file": "assets/mondstadt-scene-01.jpg"
+      },
+      {
+        "name": "晨曦酒庄",
+        "file": "assets/mondstadt-scene-02.jpg"
+      },
+      {
+        "name": "清泉镇",
+        "file": "assets/mondstadt-scene-03.jpg"
+      },
+      {
+        "name": "誓言岬",
+        "file": "assets/mondstadt-scene-04.jpg"
+      },
+      {
+        "name": "千风神殿",
+        "file": "assets/mondstadt-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "mondstadt-nicole",
+    "regionId": "mondstadt",
+    "nation": "蒙德",
+    "characterName": "尼可",
+    "officialName": "尼可",
+    "color": "#287f77",
+    "files": {
+      "background": "assets/mondstadt-scene-05.jpg",
+      "character": "assets/mondstadt-nicole-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 482.493,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 128,
+    "headAnchor": [
+      850.493,
+      432
+    ],
+    "backgroundPool": [
+      {
+        "name": "果酒湖",
+        "file": "assets/mondstadt-scene-01.jpg"
+      },
+      {
+        "name": "晨曦酒庄",
+        "file": "assets/mondstadt-scene-02.jpg"
+      },
+      {
+        "name": "清泉镇",
+        "file": "assets/mondstadt-scene-03.jpg"
+      },
+      {
+        "name": "誓言岬",
+        "file": "assets/mondstadt-scene-04.jpg"
+      },
+      {
+        "name": "千风神殿",
+        "file": "assets/mondstadt-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "liyue-zhongli",
+    "regionId": "liyue",
+    "nation": "璃月",
+    "characterName": "钟离",
+    "officialName": "钟离",
+    "color": "#946329",
+    "files": {
+      "background": "assets/liyue-scene-01.jpg",
+      "character": "assets/liyue-zhongli-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 492.573,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 105,
+    "headAnchor": [
+      826.573,
+      432
+    ],
+    "backgroundPool": [
+      {
+        "name": "港口",
+        "file": "assets/liyue-scene-01.jpg"
+      },
+      {
+        "name": "天衡山",
+        "file": "assets/liyue-scene-02.jpg"
+      },
+      {
+        "name": "望舒客栈",
+        "file": "assets/liyue-scene-03.jpg"
+      },
+      {
+        "name": "轻策庄",
+        "file": "assets/liyue-scene-04.jpg"
+      },
+      {
+        "name": "绝云间",
+        "file": "assets/liyue-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "liyue-hutao",
+    "regionId": "liyue",
+    "nation": "璃月",
+    "characterName": "胡桃",
+    "officialName": "胡桃",
+    "color": "#946329",
+    "files": {
+      "background": "assets/liyue-scene-02.jpg",
+      "character": "assets/liyue-hutao-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 643.373,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 119,
+    "headAnchor": [
+      841.373,
+      416
+    ],
+    "backgroundPool": [
+      {
+        "name": "港口",
+        "file": "assets/liyue-scene-01.jpg"
+      },
+      {
+        "name": "天衡山",
+        "file": "assets/liyue-scene-02.jpg"
+      },
+      {
+        "name": "望舒客栈",
+        "file": "assets/liyue-scene-03.jpg"
+      },
+      {
+        "name": "轻策庄",
+        "file": "assets/liyue-scene-04.jpg"
+      },
+      {
+        "name": "绝云间",
+        "file": "assets/liyue-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "liyue-qiqi",
+    "regionId": "liyue",
+    "nation": "璃月",
+    "characterName": "七七",
+    "officialName": "七七",
+    "color": "#946329",
+    "files": {
+      "background": "assets/liyue-scene-04.jpg",
+      "character": "assets/liyue-qiqi-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 777,
+    "characterLeft": 620.397,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 142,
+    "headAnchor": [
+      864.397,
+      348
+    ],
+    "backgroundPool": [
+      {
+        "name": "港口",
+        "file": "assets/liyue-scene-01.jpg"
+      },
+      {
+        "name": "天衡山",
+        "file": "assets/liyue-scene-02.jpg"
+      },
+      {
+        "name": "望舒客栈",
+        "file": "assets/liyue-scene-03.jpg"
+      },
+      {
+        "name": "轻策庄",
+        "file": "assets/liyue-scene-04.jpg"
+      },
+      {
+        "name": "绝云间",
+        "file": "assets/liyue-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "liyue-zibai",
+    "regionId": "liyue",
+    "nation": "璃月",
+    "characterName": "兹白",
+    "officialName": "兹白",
+    "color": "#946329",
+    "files": {
+      "background": "assets/liyue-scene-05.jpg",
+      "character": "assets/liyue-zibai-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 805,
+    "characterLeft": 514.286,
+    "characterTop": 283,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 176,
+    "speechWidth": 294,
+    "speechTailLeft": 194,
+    "headAnchor": [
+      916.286,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "港口",
+        "file": "assets/liyue-scene-01.jpg"
+      },
+      {
+        "name": "天衡山",
+        "file": "assets/liyue-scene-02.jpg"
+      },
+      {
+        "name": "望舒客栈",
+        "file": "assets/liyue-scene-03.jpg"
+      },
+      {
+        "name": "轻策庄",
+        "file": "assets/liyue-scene-04.jpg"
+      },
+      {
+        "name": "绝云间",
+        "file": "assets/liyue-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-raiden",
+    "regionId": "inazuma",
+    "nation": "稻妻",
+    "characterName": "雷神",
+    "officialName": "雷电将军",
+    "color": "#7957ac",
+    "files": {
+      "background": "assets/inazuma-scene-01.jpg",
+      "character": "assets/inazuma-raiden-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 650,
+    "characterLeft": 320,
+    "characterTop": 500,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 392,
+    "speechWidth": 294,
+    "speechTailLeft": 209,
+    "headAnchor": [
+      930.6060606060606,
+      721.5909090909091
+    ],
+    "backgroundPool": [
+      {
+        "name": "稻妻城",
+        "file": "assets/inazuma-scene-01.jpg"
+      },
+      {
+        "name": "鸣神大社",
+        "file": "assets/inazuma-scene-02.jpg"
+      },
+      {
+        "name": "离岛",
+        "file": "assets/inazuma-scene-03.jpg"
+      },
+      {
+        "name": "镇守之森",
+        "file": "assets/inazuma-scene-04.jpg"
+      },
+      {
+        "name": "名椎滩",
+        "file": "assets/inazuma-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-yae",
+    "regionId": "inazuma",
+    "nation": "稻妻",
+    "characterName": "八重神子",
+    "officialName": "八重神子",
+    "color": "#7957ac",
+    "files": {
+      "background": "assets/inazuma-scene-02.jpg",
+      "character": "assets/inazuma-yae-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 693,
+    "characterLeft": 585.574,
+    "characterTop": 375,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 268,
+    "speechWidth": 294,
+    "speechTailLeft": 68,
+    "headAnchor": [
+      789.574,
+      399
+    ],
+    "backgroundPool": [
+      {
+        "name": "稻妻城",
+        "file": "assets/inazuma-scene-01.jpg"
+      },
+      {
+        "name": "鸣神大社",
+        "file": "assets/inazuma-scene-02.jpg"
+      },
+      {
+        "name": "离岛",
+        "file": "assets/inazuma-scene-03.jpg"
+      },
+      {
+        "name": "镇守之森",
+        "file": "assets/inazuma-scene-04.jpg"
+      },
+      {
+        "name": "名椎滩",
+        "file": "assets/inazuma-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-yoimiya",
+    "regionId": "inazuma",
+    "nation": "稻妻",
+    "characterName": "宵宫",
+    "officialName": "宵宫",
+    "color": "#7957ac",
+    "files": {
+      "background": "assets/inazuma-scene-03.jpg",
+      "character": "assets/inazuma-yoimiya-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 559.007,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 106,
+    "headAnchor": [
+      828.007,
+      416
+    ],
+    "backgroundPool": [
+      {
+        "name": "稻妻城",
+        "file": "assets/inazuma-scene-01.jpg"
+      },
+      {
+        "name": "鸣神大社",
+        "file": "assets/inazuma-scene-02.jpg"
+      },
+      {
+        "name": "离岛",
+        "file": "assets/inazuma-scene-03.jpg"
+      },
+      {
+        "name": "镇守之森",
+        "file": "assets/inazuma-scene-04.jpg"
+      },
+      {
+        "name": "名椎滩",
+        "file": "assets/inazuma-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-ayaka",
+    "regionId": "inazuma",
+    "nation": "稻妻",
+    "characterName": "神里绫华",
+    "officialName": "神里绫华",
+    "color": "#7957ac",
+    "files": {
+      "background": "assets/inazuma-scene-04.jpg",
+      "character": "assets/inazuma-ayaka-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 613.978,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 109,
+    "headAnchor": [
+      830.978,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "稻妻城",
+        "file": "assets/inazuma-scene-01.jpg"
+      },
+      {
+        "name": "鸣神大社",
+        "file": "assets/inazuma-scene-02.jpg"
+      },
+      {
+        "name": "离岛",
+        "file": "assets/inazuma-scene-03.jpg"
+      },
+      {
+        "name": "镇守之森",
+        "file": "assets/inazuma-scene-04.jpg"
+      },
+      {
+        "name": "名椎滩",
+        "file": "assets/inazuma-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-kazuha",
+    "regionId": "inazuma",
+    "nation": "稻妻",
+    "characterName": "万叶",
+    "officialName": "枫原万叶",
+    "color": "#7957ac",
+    "files": {
+      "background": "assets/inazuma-scene-05.jpg",
+      "character": "assets/inazuma-kazuha-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 646.263,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 160,
+    "headAnchor": [
+      882.263,
+      366
+    ],
+    "backgroundPool": [
+      {
+        "name": "稻妻城",
+        "file": "assets/inazuma-scene-01.jpg"
+      },
+      {
+        "name": "鸣神大社",
+        "file": "assets/inazuma-scene-02.jpg"
+      },
+      {
+        "name": "离岛",
+        "file": "assets/inazuma-scene-03.jpg"
+      },
+      {
+        "name": "镇守之森",
+        "file": "assets/inazuma-scene-04.jpg"
+      },
+      {
+        "name": "名椎滩",
+        "file": "assets/inazuma-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "sumeru-nahida",
+    "regionId": "sumeru",
+    "nation": "须弥",
+    "characterName": "草神",
+    "officialName": "纳西妲",
+    "color": "#4d7b40",
+    "files": {
+      "background": "assets/sumeru-scene-01.jpg",
+      "character": "assets/sumeru-nahida-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 594.892,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 104,
+    "headAnchor": [
+      825.892,
+      407
+    ],
+    "backgroundPool": [
+      {
+        "name": "须弥城",
+        "file": "assets/sumeru-scene-01.jpg"
+      },
+      {
+        "name": "化城郭",
+        "file": "assets/sumeru-scene-02.jpg"
+      },
+      {
+        "name": "禅那园",
+        "file": "assets/sumeru-scene-03.jpg"
+      },
+      {
+        "name": "奥摩斯港",
+        "file": "assets/sumeru-scene-04.jpg"
+      },
+      {
+        "name": "喀万驿",
+        "file": "assets/sumeru-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "sumeru-tighnari",
+    "regionId": "sumeru",
+    "nation": "须弥",
+    "characterName": "提纳里",
+    "officialName": "提纳里",
+    "color": "#4d7b40",
+    "files": {
+      "background": "assets/sumeru-scene-03.jpg",
+      "character": "assets/sumeru-tighnari-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 557.678,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 77,
+    "headAnchor": [
+      798.678,
+      448
+    ],
+    "backgroundPool": [
+      {
+        "name": "须弥城",
+        "file": "assets/sumeru-scene-01.jpg"
+      },
+      {
+        "name": "化城郭",
+        "file": "assets/sumeru-scene-02.jpg"
+      },
+      {
+        "name": "禅那园",
+        "file": "assets/sumeru-scene-03.jpg"
+      },
+      {
+        "name": "奥摩斯港",
+        "file": "assets/sumeru-scene-04.jpg"
+      },
+      {
+        "name": "喀万驿",
+        "file": "assets/sumeru-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "sumeru-faruzan",
+    "regionId": "sumeru",
+    "nation": "须弥",
+    "characterName": "珐露珊",
+    "officialName": "珐露珊",
+    "color": "#4d7b40",
+    "files": {
+      "background": "assets/sumeru-scene-05.jpg",
+      "character": "assets/sumeru-faruzan-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 613.199,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 156,
+    "headAnchor": [
+      878.199,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "须弥城",
+        "file": "assets/sumeru-scene-01.jpg"
+      },
+      {
+        "name": "化城郭",
+        "file": "assets/sumeru-scene-02.jpg"
+      },
+      {
+        "name": "禅那园",
+        "file": "assets/sumeru-scene-03.jpg"
+      },
+      {
+        "name": "奥摩斯港",
+        "file": "assets/sumeru-scene-04.jpg"
+      },
+      {
+        "name": "喀万驿",
+        "file": "assets/sumeru-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "natlan-mavuika",
+    "regionId": "natlan",
+    "nation": "纳塔",
+    "characterName": "火神",
+    "officialName": "玛薇卡",
+    "color": "#bb5e33",
+    "files": {
+      "background": "assets/natlan-scene-01.jpg",
+      "character": "assets/natlan-mavuika-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 525.49,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 127,
+    "headAnchor": [
+      849.49,
+      432
+    ],
+    "backgroundPool": [
+      {
+        "name": "万火之瓯",
+        "file": "assets/natlan-scene-01.jpg"
+      },
+      {
+        "name": "踞石山",
+        "file": "assets/natlan-scene-02.jpg"
+      },
+      {
+        "name": "涌流地",
+        "file": "assets/natlan-scene-03.jpg"
+      },
+      {
+        "name": "硫晶支脉",
+        "file": "assets/natlan-scene-04.jpg"
+      },
+      {
+        "name": "浮土静界",
+        "file": "assets/natlan-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "natlan-xilonen",
+    "regionId": "natlan",
+    "nation": "纳塔",
+    "characterName": "希诺宁",
+    "officialName": "希诺宁",
+    "color": "#bb5e33",
+    "files": {
+      "background": "assets/natlan-scene-02.jpg",
+      "character": "assets/natlan-xilonen-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 668.818,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 140,
+    "headAnchor": [
+      861.818,
+      383
+    ],
+    "backgroundPool": [
+      {
+        "name": "万火之瓯",
+        "file": "assets/natlan-scene-01.jpg"
+      },
+      {
+        "name": "踞石山",
+        "file": "assets/natlan-scene-02.jpg"
+      },
+      {
+        "name": "涌流地",
+        "file": "assets/natlan-scene-03.jpg"
+      },
+      {
+        "name": "硫晶支脉",
+        "file": "assets/natlan-scene-04.jpg"
+      },
+      {
+        "name": "浮土静界",
+        "file": "assets/natlan-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "natlan-mualani",
+    "regionId": "natlan",
+    "nation": "纳塔",
+    "characterName": "玛拉妮",
+    "officialName": "玛拉妮",
+    "color": "#bb5e33",
+    "files": {
+      "background": "assets/natlan-scene-03.jpg",
+      "character": "assets/natlan-mualani-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 519.021,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 156,
+    "headAnchor": [
+      878.021,
+      424
+    ],
+    "backgroundPool": [
+      {
+        "name": "万火之瓯",
+        "file": "assets/natlan-scene-01.jpg"
+      },
+      {
+        "name": "踞石山",
+        "file": "assets/natlan-scene-02.jpg"
+      },
+      {
+        "name": "涌流地",
+        "file": "assets/natlan-scene-03.jpg"
+      },
+      {
+        "name": "硫晶支脉",
+        "file": "assets/natlan-scene-04.jpg"
+      },
+      {
+        "name": "浮土静界",
+        "file": "assets/natlan-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "natlan-varesa",
+    "regionId": "natlan",
+    "nation": "纳塔",
+    "characterName": "瓦蕾莎",
+    "officialName": "瓦雷莎",
+    "color": "#bb5e33",
+    "files": {
+      "background": "assets/natlan-scene-04.jpg",
+      "character": "assets/natlan-varesa-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 524.142,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 101,
+    "headAnchor": [
+      823.142,
+      407
+    ],
+    "backgroundPool": [
+      {
+        "name": "万火之瓯",
+        "file": "assets/natlan-scene-01.jpg"
+      },
+      {
+        "name": "踞石山",
+        "file": "assets/natlan-scene-02.jpg"
+      },
+      {
+        "name": "涌流地",
+        "file": "assets/natlan-scene-03.jpg"
+      },
+      {
+        "name": "硫晶支脉",
+        "file": "assets/natlan-scene-04.jpg"
+      },
+      {
+        "name": "浮土静界",
+        "file": "assets/natlan-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "natlan-citlali",
+    "regionId": "natlan",
+    "nation": "纳塔",
+    "characterName": "茜特菈莉",
+    "officialName": "茜特菈莉",
+    "color": "#bb5e33",
+    "files": {
+      "background": "assets/natlan-scene-05.jpg",
+      "character": "assets/natlan-citlali-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 621.644,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 143,
+    "headAnchor": [
+      864.644,
+      416
+    ],
+    "backgroundPool": [
+      {
+        "name": "万火之瓯",
+        "file": "assets/natlan-scene-01.jpg"
+      },
+      {
+        "name": "踞石山",
+        "file": "assets/natlan-scene-02.jpg"
+      },
+      {
+        "name": "涌流地",
+        "file": "assets/natlan-scene-03.jpg"
+      },
+      {
+        "name": "硫晶支脉",
+        "file": "assets/natlan-scene-04.jpg"
+      },
+      {
+        "name": "浮土静界",
+        "file": "assets/natlan-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "fontaine-neuvillette",
+    "regionId": "fontaine",
+    "nation": "枫丹",
+    "characterName": "那维莱特",
+    "officialName": "那维莱特",
+    "color": "#376fbd",
+    "files": {
+      "background": "assets/fontaine-scene-01.jpg",
+      "character": "assets/fontaine-neuvillette-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 638.601,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 110,
+    "headAnchor": [
+      831.601,
+      375
+    ],
+    "backgroundPool": [
+      {
+        "name": "枫丹廷",
+        "file": "assets/fontaine-scene-01.jpg"
+      },
+      {
+        "name": "欧庇克莱歌剧院",
+        "file": "assets/fontaine-scene-02.jpg"
+      },
+      {
+        "name": "海露港",
+        "file": "assets/fontaine-scene-03.jpg"
+      },
+      {
+        "name": "秋分山西侧",
+        "file": "assets/fontaine-scene-04.jpg"
+      },
+      {
+        "name": "塞洛海原",
+        "file": "assets/fontaine-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "fontaine-furina",
+    "regionId": "fontaine",
+    "nation": "枫丹",
+    "characterName": "芙宁娜",
+    "officialName": "芙宁娜",
+    "color": "#376fbd",
+    "files": {
+      "background": "assets/fontaine-scene-02.jpg",
+      "character": "assets/fontaine-furina-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 616.774,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 157,
+    "headAnchor": [
+      878.774,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "枫丹廷",
+        "file": "assets/fontaine-scene-01.jpg"
+      },
+      {
+        "name": "欧庇克莱歌剧院",
+        "file": "assets/fontaine-scene-02.jpg"
+      },
+      {
+        "name": "海露港",
+        "file": "assets/fontaine-scene-03.jpg"
+      },
+      {
+        "name": "秋分山西侧",
+        "file": "assets/fontaine-scene-04.jpg"
+      },
+      {
+        "name": "塞洛海原",
+        "file": "assets/fontaine-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "fontaine-escoffier",
+    "regionId": "fontaine",
+    "nation": "枫丹",
+    "characterName": "爱可菲",
+    "officialName": "爱可菲",
+    "color": "#376fbd",
+    "files": {
+      "background": "assets/fontaine-scene-04.jpg",
+      "character": "assets/fontaine-escoffier-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 523.465,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 116,
+    "headAnchor": [
+      838.465,
+      416
+    ],
+    "backgroundPool": [
+      {
+        "name": "枫丹廷",
+        "file": "assets/fontaine-scene-01.jpg"
+      },
+      {
+        "name": "欧庇克莱歌剧院",
+        "file": "assets/fontaine-scene-02.jpg"
+      },
+      {
+        "name": "海露港",
+        "file": "assets/fontaine-scene-03.jpg"
+      },
+      {
+        "name": "秋分山西侧",
+        "file": "assets/fontaine-scene-04.jpg"
+      },
+      {
+        "name": "塞洛海原",
+        "file": "assets/fontaine-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "fontaine-lynette",
+    "regionId": "fontaine",
+    "nation": "枫丹",
+    "characterName": "琳妮特",
+    "officialName": "琳妮特",
+    "color": "#376fbd",
+    "files": {
+      "background": "assets/fontaine-scene-05.jpg",
+      "character": "assets/fontaine-lynette-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 783,
+    "characterLeft": 572.421,
+    "characterTop": 285,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 178,
+    "speechWidth": 294,
+    "speechTailLeft": 80,
+    "headAnchor": [
+      802.421,
+      383
+    ],
+    "backgroundPool": [
+      {
+        "name": "枫丹廷",
+        "file": "assets/fontaine-scene-01.jpg"
+      },
+      {
+        "name": "欧庇克莱歌剧院",
+        "file": "assets/fontaine-scene-02.jpg"
+      },
+      {
+        "name": "海露港",
+        "file": "assets/fontaine-scene-03.jpg"
+      },
+      {
+        "name": "秋分山西侧",
+        "file": "assets/fontaine-scene-04.jpg"
+      },
+      {
+        "name": "塞洛海原",
+        "file": "assets/fontaine-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "nodkrai-ineffa",
+    "regionId": "nodkrai",
+    "nation": "挪德卡莱",
+    "characterName": "伊涅芙",
+    "officialName": "伊涅芙",
+    "color": "#537e85",
+    "files": {
+      "background": "assets/nodkrai-scene-02.jpg",
+      "character": "assets/nodkrai-ineffa-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 760,
+    "characterLeft": 530.147,
+    "characterTop": 328,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 221,
+    "speechWidth": 294,
+    "speechTailLeft": 49,
+    "headAnchor": [
+      771.147,
+      399
+    ],
+    "backgroundPool": [
+      {
+        "name": "挪德卡莱",
+        "file": "assets/nodkrai-scene-01.jpg"
+      },
+      {
+        "name": "叮铃哐啷蛋卷工坊",
+        "file": "assets/nodkrai-scene-02.jpg"
+      },
+      {
+        "name": "终北的遗响",
+        "file": "assets/nodkrai-scene-03.jpg"
+      },
+      {
+        "name": "寂静的浅滩",
+        "file": "assets/nodkrai-scene-04.jpg"
+      }
+    ]
+  },
+  {
+    "id": "nodkrai-flins",
+    "regionId": "nodkrai",
+    "nation": "挪德卡莱",
+    "characterName": "菲林斯",
+    "officialName": "菲林斯",
+    "color": "#537e85",
+    "files": {
+      "background": "assets/nodkrai-scene-03.jpg",
+      "character": "assets/nodkrai-flins-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 805,
+    "characterLeft": 497.303,
+    "characterTop": 283,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 176,
+    "speechWidth": 294,
+    "speechTailLeft": 18,
+    "headAnchor": [
+      730.303,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "挪德卡莱",
+        "file": "assets/nodkrai-scene-01.jpg"
+      },
+      {
+        "name": "叮铃哐啷蛋卷工坊",
+        "file": "assets/nodkrai-scene-02.jpg"
+      },
+      {
+        "name": "终北的遗响",
+        "file": "assets/nodkrai-scene-03.jpg"
+      },
+      {
+        "name": "寂静的浅滩",
+        "file": "assets/nodkrai-scene-04.jpg"
+      }
+    ]
+  },
+  {
+    "id": "nodkrai-nefer",
+    "regionId": "nodkrai",
+    "nation": "挪德卡莱",
+    "characterName": "奈芙尔",
+    "officialName": "奈芙尔",
+    "color": "#537e85",
+    "files": {
+      "background": "assets/nodkrai-scene-04.jpg",
+      "character": "assets/nodkrai-nefer-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 522.446,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 111,
+    "headAnchor": [
+      833.446,
+      432
+    ],
+    "backgroundPool": [
+      {
+        "name": "挪德卡莱",
+        "file": "assets/nodkrai-scene-01.jpg"
+      },
+      {
+        "name": "叮铃哐啷蛋卷工坊",
+        "file": "assets/nodkrai-scene-02.jpg"
+      },
+      {
+        "name": "终北的遗响",
+        "file": "assets/nodkrai-scene-03.jpg"
+      },
+      {
+        "name": "寂静的浅滩",
+        "file": "assets/nodkrai-scene-04.jpg"
+      }
+    ]
+  },
+  {
+    "id": "snezhnaya-tsaritsa",
+    "regionId": "snezhnaya",
+    "nation": "至冬",
+    "characterName": "女皇",
+    "officialName": "USER",
+    "color": "#526faf",
+    "files": {
+      "background": "assets/snezhnaya-scene-01.jpg",
+      "character": "assets/snezhnaya-tsaritsa-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 740,
+    "characterLeft": 660.837,
+    "characterTop": 286,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 179,
+    "speechWidth": 294,
+    "speechTailLeft": 143,
+    "headAnchor": [
+      864.837,
+      331
+    ],
+    "backgroundPool": [
+      {
+        "name": "极星的冰雪之宫",
+        "file": "assets/snezhnaya-scene-01.jpg"
+      },
+      {
+        "name": "舞者与歌者织梦之地",
+        "file": "assets/snezhnaya-scene-02.jpg"
+      },
+      {
+        "name": "愚人们的卫城",
+        "file": "assets/snezhnaya-scene-03.jpg"
+      },
+      {
+        "name": "唱响渔歌的勇士乡",
+        "file": "assets/snezhnaya-scene-04.jpg"
+      },
+      {
+        "name": "铁路汇集的中枢",
+        "file": "assets/snezhnaya-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "snezhnaya-odetta",
+    "regionId": "snezhnaya",
+    "nation": "至冬",
+    "characterName": "奥黛塔",
+    "officialName": "奥黛塔",
+    "color": "#526faf",
+    "files": {
+      "background": "assets/snezhnaya-scene-02.jpg",
+      "character": "assets/snezhnaya-odetta-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 603.931,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 104,
+    "headAnchor": [
+      825.931,
+      432
+    ],
+    "backgroundPool": [
+      {
+        "name": "极星的冰雪之宫",
+        "file": "assets/snezhnaya-scene-01.jpg"
+      },
+      {
+        "name": "舞者与歌者织梦之地",
+        "file": "assets/snezhnaya-scene-02.jpg"
+      },
+      {
+        "name": "愚人们的卫城",
+        "file": "assets/snezhnaya-scene-03.jpg"
+      },
+      {
+        "name": "唱响渔歌的勇士乡",
+        "file": "assets/snezhnaya-scene-04.jpg"
+      },
+      {
+        "name": "铁路汇集的中枢",
+        "file": "assets/snezhnaya-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "snezhnaya-sandrone",
+    "regionId": "snezhnaya",
+    "nation": "至冬",
+    "characterName": "木偶",
+    "officialName": "桑多涅",
+    "color": "#526faf",
+    "files": {
+      "background": "assets/snezhnaya-scene-03.jpg",
+      "character": "assets/snezhnaya-sandrone-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 775,
+    "characterLeft": 528.308,
+    "characterTop": 313,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 206,
+    "speechWidth": 294,
+    "speechTailLeft": 18,
+    "headAnchor": [
+      687.308,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "极星的冰雪之宫",
+        "file": "assets/snezhnaya-scene-01.jpg"
+      },
+      {
+        "name": "舞者与歌者织梦之地",
+        "file": "assets/snezhnaya-scene-02.jpg"
+      },
+      {
+        "name": "愚人们的卫城",
+        "file": "assets/snezhnaya-scene-03.jpg"
+      },
+      {
+        "name": "唱响渔歌的勇士乡",
+        "file": "assets/snezhnaya-scene-04.jpg"
+      },
+      {
+        "name": "铁路汇集的中枢",
+        "file": "assets/snezhnaya-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "snezhnaya-arlecchino",
+    "regionId": "snezhnaya",
+    "nation": "至冬",
+    "characterName": "仆人",
+    "officialName": "阿蕾奇诺",
+    "color": "#526faf",
+    "files": {
+      "background": "assets/snezhnaya-scene-04.jpg",
+      "character": "assets/snezhnaya-arlecchino-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 803,
+    "characterLeft": 580.74,
+    "characterTop": 285,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 178,
+    "speechWidth": 294,
+    "speechTailLeft": 140,
+    "headAnchor": [
+      861.74,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "极星的冰雪之宫",
+        "file": "assets/snezhnaya-scene-01.jpg"
+      },
+      {
+        "name": "舞者与歌者织梦之地",
+        "file": "assets/snezhnaya-scene-02.jpg"
+      },
+      {
+        "name": "愚人们的卫城",
+        "file": "assets/snezhnaya-scene-03.jpg"
+      },
+      {
+        "name": "唱响渔歌的勇士乡",
+        "file": "assets/snezhnaya-scene-04.jpg"
+      },
+      {
+        "name": "铁路汇集的中枢",
+        "file": "assets/snezhnaya-scene-05.jpg"
+      }
+    ]
+  },
+  {
+    "id": "snezhnaya-childe",
+    "regionId": "snezhnaya",
+    "nation": "至冬",
+    "characterName": "公子",
+    "officialName": "达达利亚",
+    "color": "#526faf",
+    "files": {
+      "background": "assets/snezhnaya-scene-05.jpg",
+      "character": "assets/snezhnaya-childe-character.png"
+    },
+    "backgroundPosition": "50%",
+    "backgroundBrightness": 1.06,
+    "characterHeight": 820,
+    "characterLeft": 558.117,
+    "characterTop": 268,
+    "characterZ": 4,
+    "speechLeft": 710,
+    "speechTop": 162,
+    "speechWidth": 294,
+    "speechTailLeft": 77,
+    "headAnchor": [
+      799.117,
+      391
+    ],
+    "backgroundPool": [
+      {
+        "name": "极星的冰雪之宫",
+        "file": "assets/snezhnaya-scene-01.jpg"
+      },
+      {
+        "name": "舞者与歌者织梦之地",
+        "file": "assets/snezhnaya-scene-02.jpg"
+      },
+      {
+        "name": "愚人们的卫城",
+        "file": "assets/snezhnaya-scene-03.jpg"
+      },
+      {
+        "name": "唱响渔歌的勇士乡",
+        "file": "assets/snezhnaya-scene-04.jpg"
+      },
+      {
+        "name": "铁路汇集的中枢",
+        "file": "assets/snezhnaya-scene-05.jpg"
+      }
+    ]
+  }
+]

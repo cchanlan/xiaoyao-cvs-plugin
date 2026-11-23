@@ -1,52 +1,86 @@
 {{extend defaultLayout}}
 {{block 'css'}}
 <style>
-    /* 二维码合成卡片：以 furina-qr-code.png 为底图，二维码叠加到指定坐标 */
-    .container {
-        width: 936px !important;
-        padding: 0 !important;
-        margin: 0;
-        background: none;
-    }
-    .qr-card {
-        position: relative;
-        width: 936px;
-        height: 1024px;
-        background-image: url('{{_res_path}}/qrCode/furina-qr-code.png');
-        background-size: 936px 1024px;
-        background-repeat: no-repeat;
-    }
-    /* 二维码外接矩形左上角位于背景图 (100, 185)，尺寸 500x500 */
-    .qr-box {
-        position: absolute;
-        left: 100px;
-        top: 185px;
-        width: 500px;
-        height: 500px;
-    }
-    .qr-box table {
-        border-collapse: collapse;
-    }
-    /* 免责声明已烧录在背景图中，隐藏布局自带的版权条避免底部多出一条 */
-    .copyright {
-        display: none !important;
-    }
+  body {transform:scale(1.4)!important;}
+  .container {width:1040px!important;padding:0!important;margin:0;background:none!important;}
+  .login-scene {position:relative;width:1040px;height:1040px;overflow:hidden;background:#e9f2f8;color:#23384d;font-family:YS2, "Microsoft YaHei", sans-serif;}
+  .scene-window {position:absolute;inset:0;overflow:hidden;}
+  .scene-stage {position:absolute;left:0;top:0;width:1040px;height:1040px;}
+  .country-background {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{theme.backgroundPosition}} center;filter:brightness({{theme.backgroundBrightness}});}
+  .scene-heading {position:absolute;left:34px;right:34px;top:32px;height:112px;border-radius:24px;background:rgba(255,255,255,.94);display:flex;align-items:center;gap:22px;padding:0 28px;z-index:5;}
+  .brand-mark {color:{{theme.color}};width:58px;height:58px;flex:none;}
+  .heading-title {font-family:HWZS,YS2,sans-serif;font-size:37px;line-height:1.4;white-space:nowrap;font-weight:600;color:#203b59;}
+  .heading-subtitle {font-family:Arial,sans-serif;font-size:15px;letter-spacing:5px;margin-top:4px;color:#647c93;}
+  .character {position:absolute;left:{{theme.characterLeft}}px;top:{{theme.characterTop}}px;height:{{theme.characterHeight}}px;width:auto;z-index:{{theme.characterZ}};}
+  .qr-surface {position:absolute;left:54px;top:184px;width:608px;height:608px;background:#fff;border-radius:25px;padding:24px;z-index:3;}
+  .qr-surface canvas {display:block;width:560px;height:560px;image-rendering:pixelated;}
+  .speech {position:absolute;left:{{theme.speechLeft}}px;width:{{theme.speechWidth}}px;top:{{theme.speechTop}}px;padding:11px 12px 10px;background:rgba(255,255,255,.97);border:2px solid {{theme.color}};border-radius:30px;text-align:center;color:{{theme.color}};z-index:5;}
+  .speech:after {content:"";position:absolute;left:{{theme.speechTailLeft}}px;bottom:-13px;width:24px;height:24px;background:#fff;border-right:2px solid {{theme.color}};border-bottom:2px solid {{theme.color}};transform:rotate(45deg);border-radius:0 0 4px 0;}
+  .speech-main {font-size:23px;line-height:1.45;position:relative;z-index:1;}
+  .safety-note {position:absolute;left:54px;top:804px;width:608px;height:110px;border-radius:22px;background:rgba(255,255,255,.94);z-index:6;padding:19px 28px;display:flex;align-items:center;gap:20px;}
+  .safety-icon {width:34px;height:34px;color:{{theme.color}};flex:none;}
+  .safety-title {font-size:19px;line-height:1.5;color:#2b4056;}
+  .safety-detail {font-size:15px;line-height:1.5;margin-top:5px;color:#63778a;}
+  .fallback-scene .qr-surface {left:162px;width:716px;height:716px;}
+  .fallback-scene .qr-surface canvas {width:668px;height:668px;}
+  .fallback-scene .safety-note {left:162px;top:912px;width:716px;}
+  .fallback-instruction {position:absolute;left:0;top:150px;width:1040px;text-align:center;font-size:18px;line-height:1.5;color:{{theme.color}};}
+  .qr-source {position:absolute;visibility:hidden;left:0;top:0;}
+  .copyright {display:none!important;}
 </style>
 {{/block}}
 {{block 'main'}}
-<div class="qr-card">
-    <div class="qr-box" id="qrbox"></div>
+<div class="login-scene{{if !theme.files.character}} fallback-scene{{/if}}" data-theme="{{theme.id}}">
+  <div class="scene-window"><div class="scene-stage">
+  {{if theme.files.background}}<img class="country-background" src="{{_res_path}}/qrCode/{{theme.files.background}}" alt="地区风景" />{{/if}}
+  <header class="scene-heading">
+    <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M10 23V10h13M41 10h13v13M54 41v13H41M23 54H10V41" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M20 29L32 17l12 12-12 18z" fill="currentColor"/><path d="M26 31h12M32 25v16" stroke="#fff" stroke-width="2.5"/></svg>
+    <div><h1 class="heading-title">逍遥 · 米游社扫码登录</h1><p class="heading-subtitle">XIAOYAO · MIHOYO LOGIN</p></div>
+  </header>
+  {{if theme.files.character}}<img class="character" src="{{_res_path}}/qrCode/{{theme.files.character}}" alt="角色" />{{/if}}
+  <div class="qr-surface"><canvas id="login-qr" width="1120" height="1120"></canvas></div>
+  {{if theme.files.character}}<div class="speech"><p class="speech-main">请用米游社 App<br/>扫码登录哦！</p></div>{{else}}<div class="fallback-instruction">请用米游社 App 扫码登录</div>{{/if}}
+  <footer class="safety-note">
+    <svg class="safety-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M18 5a2.3 2.3 0 014 0l15 27a2.5 2.5 0 01-2 4H5a2.5 2.5 0 01-2-4z" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M20 14v10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><circle cx="20" cy="29" r="1.9" fill="currentColor"/></svg>
+    <div><p class="safety-title">仅扫描自己发起的二维码</p><p class="safety-detail">请勿转发或代扫 · 确认当前机器人可信</p></div>
+  </footer>
+  </div></div>
+  <div class="qr-source" id="qr-source"></div>
 </div>
 <script src="{{_res_path}}/qrCode/js/jquery-1.10.2.min.js"></script>
 <script src="{{_res_path}}/qrCode/js/jquery.qrcode.min.js"></script>
 <script>
-var config = {
-    width:500,//值是number类型, 表示的单位是px 必须传递
-    height:500,//值是number类型, 表示的单位是px 必须传递
-    text:"{{url}}".replace(/#38;/g,''),//text就表示二维码中存储的数据 必须传递
-    correctLevel:2,//取值为0|1|2|3 表示二维码的纠错级别0:L/1:M/2:Q/3:H ,默认0 可选参数
-    render:"table"//取值:table/canvas , 默认table 可选参数
-};
-$("#qrbox").qrcode(config);
+// Reuse the installed QR encoder. Paint modules onto a pixel-aligned canvas
+// with a four-module quiet zone. The theme is selected once per login request;
+// the character and its matching region background stay paired.
+var qrUrl = {{@ qrUrlJson}};
+// The installed encoder writes 8-bit bytes; bridge Unicode URLs to UTF-8
+// without changing ordinary percent-encoded login URLs.
+var qrText = '';
+if (typeof TextEncoder === 'function') {
+  var qrBytes = new TextEncoder().encode(qrUrl);
+  for (var i=0;i<qrBytes.length;i++) qrText += String.fromCharCode(qrBytes[i]);
+} else {
+  qrText = unescape(encodeURIComponent(qrUrl));
+}
+$('#qr-source').qrcode({width:560,height:560,text:qrText,correctLevel:2,render:'table'});
+var rows = document.querySelectorAll('#qr-source tr');
+var canvas = document.getElementById('login-qr');
+var context = canvas.getContext('2d');
+var count = rows.length;
+var step = canvas.width / (count + 8);
+context.fillStyle = '#fff';context.fillRect(0,0,canvas.width,canvas.height);
+context.fillStyle = '#000';
+for (var y=0;y<count;y++) {
+  var cells=rows[y].children;
+  for (var x=0;x<count;x++) {
+    if (cells[x].style.backgroundColor==='rgb(0, 0, 0)' || cells[x].style.backgroundColor==='#000000') {
+      var x1=Math.round((x+4)*step),y1=Math.round((y+4)*step);
+      context.fillRect(x1,y1,Math.round((x+5)*step)-x1,Math.round((y+5)*step)-y1);
+    }
+  }
+}
+document.getElementById('qr-source').remove();
+window.qrPreviewReady=true;
 </script>
 {{/block}}

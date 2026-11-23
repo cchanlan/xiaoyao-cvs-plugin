@@ -9,6 +9,7 @@ import {
 	Cfg,
 } from "../components/index.js";
 import { pathToFileURL } from 'node:url'
+import { createQrRenderData } from '../model/qrTheme.js'
 const _path = process.cwd();
 
 export const rule = {
@@ -36,22 +37,27 @@ export async function qrCodeLogin(e, { render }) {
 	let Mys = new mys(e)
 	let res = await Mys.qrCodeLogin()
 	if (!res?.data) return false;
-	e._reply = e.reply
-	// 私聊发送 at 会报 retcode 1400，仅在群聊场景下 at 发起人
+	const originalReply = e.reply
+	e._reply = originalReply
+	// 群聊才 at；图片生成期间临时收集回复，完成或失败都恢复原 reply。
 	let sendMsg = e.isGroup ? [segment.at(e.user_id), '\n请扫码以完成绑定\n'] : ['请扫码以完成绑定\n']
-	e.reply = (msg) => {
-		sendMsg.push(msg)
+	const prefixLength = sendMsg.length
+	e.reply = (msg) => { sendMsg.push(msg) }
+	try {
+		await Common.render('qrCode/index', createQrRenderData(res.data.url), {
+			e, render, scale: 1.2, retMsgId: true
+		})
+		if (sendMsg.length === prefixLength) throw new Error('二维码渲染无结果')
+		let r = await originalReply.call(e, sendMsg)
+		utils.recallMsg(e, r, 30) // 默认30秒后撤回二维码
+	} catch {
+		// 不记录渲染数据或异常正文，避免登录二维码中的票据进入日志。
+		logger.error('[扫码登录] 二维码图片生成或发送失败')
+		await originalReply.call(e, '二维码图片生成失败，请稍后重试~', true)
+		return true
+	} finally {
+		e.reply = originalReply
 	}
-	await Common.render(`qrCode/index`, {
-		url: res.data.url
-	}, {
-		e,
-		render,
-		scale: 1.2, retMsgId: true
-	})
-	let r = await e._reply(sendMsg)
-	utils.recallMsg(e, r, 30) //默认30秒后撤回二维码，有需要请自行修改
-	e.reply = e._reply
 	res = await Mys.GetQrCode(res.data.ticket)
 	if (!res) return true;
 	await bindSkCK(e, res)
