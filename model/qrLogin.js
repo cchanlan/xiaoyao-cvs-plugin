@@ -9,7 +9,6 @@ export default class mysQrLogin {
 	constructor(e) {
 		this.e = e;
 		this.user = new User(e);
-		this.sendMsgUser = `免责声明:您将通过扫码完成获取米游社sk以及ck。\n本Bot将不会保存您的登录状态。\n我方仅提供米游社查询及相关游戏内容服务,若您的账号封禁、被盗等处罚与我方无关。\n害怕风险请勿扫码~`
 	}
 
 	async qrCodeLogin() {
@@ -20,7 +19,6 @@ export default class mysQrLogin {
 			return false;
 		}
 		this.device = await utils.randomString(16)
-		this.e.reply(this.sendMsgUser)
 		let res = await this.user.getData("qrCodeLogin", {
 			device: this.device
 		}, false)
